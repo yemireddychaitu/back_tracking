@@ -1,0 +1,62 @@
+#include <stdio.h>
+int issafe(int *a,int r,int c)
+{
+    int i;
+    if(abs(c-a[r-1])>1)
+    {
+        for(i=1;i<r;i++)
+        {
+            if(c==a[i])
+            return 0;
+        }
+        return 1;
+    }
+    else
+    return 0;
+}
+int nqueen(int *a,int r,int n)
+{
+    int j,i;
+    for(j=1;j<=n;j++)
+    {
+        if(issafe(a,r,j))
+        {
+            a[r]=j;
+            if(r==n)
+            {
+                for(i=1;i<=n;i++)
+    	    printf("%d",a[i]);
+    	    printf("\n");
+    	    a[n+1]=1;
+    	    return 0;
+            }
+            else
+            {
+                if(nqueen(a,r+1,n))
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int main(void) {
+	// your code goes here
+	int n,i,j;
+	scanf("%d",&n);
+	int a[n+1];
+	for(i=1;i<=n+1;i++)
+	a[i]=0;
+	for(j=1;j<=n;j++)
+	{
+	    a[1]=j;
+    	nqueen(a,2,n);
+    	
+	}
+	if(a[n+1]==0)
+	{
+	    printf("no solution");
+	}
+	return 0;
+}
+

@@ -1,0 +1,30 @@
+#include <stdio.h>
+int solve(int i,int n,int *a,int s,int t)
+{
+    int j;
+    if(t==s)
+    return 1;
+    for(j=i;j<=n;j++)
+    {
+        if(solve(j+1,n,a,s,t+a[j]))
+        {
+          return 1;
+        }
+    }
+    return 0;
+}
+
+int main(void) {
+	// your code goes here
+	int i,n,s,t=0;
+	scanf("%d",&n);
+	int a[n];
+	for(i=1;i<=n;i++)
+	scanf("%d",&a[i]);
+	scanf("%d",&s);
+	if(solve(1,n,a,s,t))
+	    printf("true");
+	else
+	    printf("false");
+	return 0;
+}
